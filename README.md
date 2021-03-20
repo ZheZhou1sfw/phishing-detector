@@ -11,3 +11,6 @@ Select phishing-detector folder
 Go to any website and tryout extension
 
 If you make any changes to extension, click refresh button on the extension.
+
+
+Fish by Muhammad Fahmi from the Noun Project
