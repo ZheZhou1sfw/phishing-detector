@@ -1,38 +1,9 @@
-// {
-//  "manifest_version": 3,
-//  "name": "PhishingDetector",
-//  "version": "0.1",
-// //  "description": "Extension to help users detect phishing websites",
-// //  "short_name": "Phishing Detector",
-//  "permissions": ["activeTab", 
-//   // "declarativeContent", 
-//   // "storage", 
-//   // "webNavigation",
-//   "scripting"],
-//  "background": [
-//    {
-//     //  "matches": ["<all_urls>"],
-//     //  "all_frames": true,
-//     //  "run_at": "document_end",
-//     //  "css": ["content.css"],
-//      "service_worker": "background.js"
-//    }
-//  ],
-//  "action": {
-//   //  "default_title": "Does a thing when you do a thing",
-//   //  "default_popup": "popup.html",
-//   //  "default_icon": {
-//   //    "32": "icons/fish.png"
-//    }
-// }
-
-
 
 {
-  "name": "Page Redder",
+  "name": "Phishing Detector",
   "manifest_version": 3,
   "version": "0.1",
-  "description": "Turns the page red when you click the icon",
+  "description": "Attempts to use various techniques to detect phishing websites",
   "permissions": [
     "activeTab",
     "scripting",
