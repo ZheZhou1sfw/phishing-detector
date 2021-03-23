@@ -1,19 +1,10 @@
-// get the url
-let url = window.location.href;
+chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
+{
+    // step 1: get the url
+    let url = tabs[0].url;
+    // step 2: perform checks
 
-// perform checks
-function check() {
-    return Math.random();
-}
-// update the warning level
+    // step 3: render result
 
-// document.getElementById("level").innerHTML = globalUrl;
-
-// changeColor.addEventListener("click", async () => {
-//     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  
-//     chrome.scripting.executeScript({
-//       target: { tabId: tab.id },
-//       function: () => {alert('123')},
-//     });
-//   });
+    document.getElementById("level").innerHTML = url;
+});
