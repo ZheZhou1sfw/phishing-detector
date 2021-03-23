@@ -1,24 +1,51 @@
+// {
+//  "manifest_version": 3,
+//  "name": "PhishingDetector",
+//  "version": "0.1",
+// //  "description": "Extension to help users detect phishing websites",
+// //  "short_name": "Phishing Detector",
+//  "permissions": ["activeTab", 
+//   // "declarativeContent", 
+//   // "storage", 
+//   // "webNavigation",
+//   "scripting"],
+//  "background": [
+//    {
+//     //  "matches": ["<all_urls>"],
+//     //  "all_frames": true,
+//     //  "run_at": "document_end",
+//     //  "css": ["content.css"],
+//      "service_worker": "background.js"
+//    }
+//  ],
+//  "action": {
+//   //  "default_title": "Does a thing when you do a thing",
+//   //  "default_popup": "popup.html",
+//   //  "default_icon": {
+//   //    "32": "icons/fish.png"
+//    }
+// }
+
+
+
 {
- "manifest_version": 2,
- "name": "PhishingDetector",
- "version": "1.0.0",
- "description": "Extension to help users detect phishing websites",
- "short_name": "Phishing Detector",
- "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
- "content_scripts": [
-   {
-     "matches": ["<all_urls>"],
-     "all_frames": true,
-     "run_at": "document_end",
-     "css": ["content.css"],
-     "js": ["content.js"]
-   }
- ],
- "browser_action": {
-   "default_title": "Does a thing when you do a thing",
-   "default_popup": "popup.html",
-   "default_icon": {
-     "32": "icons/fish.png"
-   }
- }
+  "name": "Page Redder",
+  "manifest_version": 3,
+  "version": "0.1",
+  "description": "Turns the page red when you click the icon",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+   "action": {
+    "default_title": "Does a thing when you do a thing",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "32": "icons/fish.png"
+    }
+  }
 }
