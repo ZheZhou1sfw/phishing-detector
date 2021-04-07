@@ -26,10 +26,13 @@ bool PhishDetector::Check()
 		for (int i = 0; i < picture_v.size(); i++)
 		{
 			SourceFinder sf(picture_v[i]);
-			source_v.push_back(sf.Run());
+			std::vector<std::string> sf_run = sf.Run();
+			for (int i = 0; i < sf_run.size(); i++) source_v.push_back(sf_run[i]);
 		}
 
-		std::cout << source_v[0] << std::endl; // debug
+		for (int i = 0; i < source_v.size(); i++)
+			std::cout << source_v[i] << std::endl; // debug
+		exit(3);
 
 		WhoIS wi(url);
 

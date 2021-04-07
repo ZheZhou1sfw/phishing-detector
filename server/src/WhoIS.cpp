@@ -1,4 +1,5 @@
 #include "WhoIS.h"
+#include "pdutil.h"
 
 WhoIS::WhoIS(std::string url) : url(url)
 {
@@ -7,12 +8,6 @@ WhoIS::WhoIS(std::string url) : url(url)
 void WhoIS::Set(std::string newurl)
 {
 	url = newurl;
-}
-
-static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
 }
 
 std::string WhoIS::Find()
