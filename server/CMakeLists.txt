@@ -8,3 +8,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(sources src/main.cpp src/PhishDetector.cpp src/PhishDatabase.cpp src/PictureExtractor.cpp src/SourceFinder.cpp src/WhoIS.cpp)
 
 add_executable(${NAME} ${sources})
+
+target_link_libraries(${NAME} curl)
+target_link_libraries(${NAME} jsoncpp)
