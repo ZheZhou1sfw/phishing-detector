@@ -32,7 +32,9 @@ bool PhishDetector::Check()
 
 		for (int i = 0; i < source_v.size(); i++)
 			std::cout << source_v[i] << std::endl; // debug
-		exit(3);
+
+		return 3;
+		// exit(3);
 
 		WhoIS wi(url);
 

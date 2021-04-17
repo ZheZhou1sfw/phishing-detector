@@ -17,6 +17,9 @@ std::vector<std::string> PictureExtractor::Run()
 	// return extractor pictures in href
 	std::vector<std::string> res;
 
+	// tmp
+	res.push_back("https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
+	
 	// TODO step1: get the html code
 
 

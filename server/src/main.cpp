@@ -61,7 +61,11 @@ int main()
                 break;
             }
             std::cout << buf << std::endl;
-            send(conn, buf, len, 0);
+			string URL = string(buf);
+			cout << "DEBUG = " << URL << endl;
+			PhishDetector pd(URL);
+			cout << pd.Check() << endl;
+            send(conn, "True", 4, 0);
         }
         
         close(conn);
