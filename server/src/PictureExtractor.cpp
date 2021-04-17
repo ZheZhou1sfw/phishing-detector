@@ -17,10 +17,10 @@ std::vector<std::string> PictureExtractor::Run()
 	// return extractor pictures in href
 	std::vector<std::string> res;
 
-	// get the html code
+	// TODO step1: get the html code
 
 
-	// run the regular expression with <regex> library
+	// TODO step2: run the regular expression with <regex> library
 	// example urls for testing:
 	/*
         content="https://static.slickdealscdn.com/images/sd_share_logo.png"
@@ -32,10 +32,16 @@ std::vector<std::string> PictureExtractor::Run()
         content="https://what_icoasfcc.png"
         src="https://abs.twimg.com/errors/logo46x38.png"
 
+
+        需要补全的：
+        src="/logos/doodles/2021/celebrating-laura-bassi-6753651837109199-l.png"
 	 */
 
-    // use this regular expression pattern (between ~):    ~(content|href|src)="https:\/\/[^"]*(logo|icon|ico)+.*png"~
-    // then strip off the unnecessary parts.
+    // use this regular expression pattern (between ~):
+    // 完整url pattern:   ~(content|href|src)="https:\/\/[^"]*(logo|icon|ico)+.*png"~
+    // 需要补全的url pattern:     ~(content|href|src)="\/[^"]*(logo|icon|ico)+.*png"~
+
+    // then strip off the unnecessary parts in urls.
 
     // verify: https://www.regextester.com/ use the above example and regex pattern
 
