@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 
+
 class PictureExtractor
 {
 private:
