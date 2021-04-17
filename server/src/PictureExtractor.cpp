@@ -30,7 +30,7 @@ std::vector<std::string> PictureExtractor::Run()
         content="https://www.pinterest.com/"
         content="https://s.pinimg.com/webapp/logo_trans_144x144-5e37c0c6.png"
         content="https://what_icoasfcc.png"
-        src="https://abs.twimg.com/errors/logo46x38.png
+        src="https://abs.twimg.com/errors/logo46x38.png"
 
 	 */
 
