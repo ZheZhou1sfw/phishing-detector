@@ -13,7 +13,8 @@ PhishDetector::PhishDetector(std::string url) : url(url)
 bool PhishDetector::Check()
 {
 	PhishDatabase phish_db;
-	if (phish_db.Check(url) == 2)
+	int pd_check = phish_db.Check(url);	
+	if (pd_check == 2)
 	{
 		// url is not in DB yet, need to self-check
 		PictureExtractor pic_ext(url);
@@ -54,6 +55,20 @@ bool PhishDetector::Check()
 		// bigger eq_cnt, more chance that it's not a phishing website
 		
 		return 0;
+	}
+	else if (pd_check == 1)
+	{
+		std::cout << "Not Phishing according to Phishtank" << std::endl;
+		return 1;
+	}
+	else if (pd_check == 0)
+	{
+		std::cout << "Is Phishing according to Phishtank" << std::endl;
+		return 0;
+	}
+	else
+	{
+		std::cout << "Error: phishtank result's wrong" << std::endl;
 	}
 	return 1;
 }

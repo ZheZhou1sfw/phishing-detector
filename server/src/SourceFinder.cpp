@@ -20,6 +20,7 @@ std::vector<std::string> SourceFinder::Run()
 		res = curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
 	}
+
 	Json::Reader reader;
     reader.parse(readBuffer, reply);
 
