@@ -1,4 +1,6 @@
 #include "PictureExtractor.h"
+#include "pdutil.h"
+#include <regex>
 
 PictureExtractor::PictureExtractor(std::string url) : url(url)
 {
@@ -21,7 +23,20 @@ std::vector<std::string> PictureExtractor::Run()
 	res.push_back("https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
 	
 	// TODO step1: get the html code
-
+	CURL *curl;
+	CURLcode res_curl;
+	std::string readBuffer;
+	curl = curl_easy_init ();
+	if (curl)
+	{
+		curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);		
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+		curl_easy_setopt(curl, CURLOPT_USERAGENT, "Chrome/79");		
+		res_curl = curl_easy_perform(curl);
+		curl_easy_cleanup(curl);
+	}
 
 	// TODO step2: run the regular expression with <regex> library
 	// example urls for testing:
@@ -49,7 +64,7 @@ std::vector<std::string> PictureExtractor::Run()
 
     // verify: https://www.regextester.com/ use the above example and regex pattern
 
-
+	exit(444);
 
 	return res;
 }

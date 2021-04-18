@@ -20,6 +20,10 @@ PhishDatabase::PhishDatabase()
 
 int PhishDatabase::Check(std::string url)
 {
+
+	// debug for PictureExtractor
+	return 2;
+	
 	// if url is in, return blablabla (positive/negative/possibility)
 
 	// system("curl --user-agent 'Chrome/79' -X POST https://checkurl.phishtank.com/checkurl/ -F 'format=json' -F 'url=https://www.google.com'");

@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
-
+#include <iostream>
+#include <curl/curl.h>
+#include <jsoncpp/json/json.h>
 
 class PictureExtractor
 {
