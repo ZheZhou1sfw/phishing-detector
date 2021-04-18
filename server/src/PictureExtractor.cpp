@@ -42,6 +42,7 @@ std::vector<std::string> PictureExtractor::Run()
 
     // use this regular expression pattern (between ~):
     // 完整url pattern:   ~(content|href|src)="https:\/\/[^"]*(logo|icon|ico)+.*png"~
+    // 完整url pattern:   ~(content|href|src)="http:\/\/[^"]*(logo|icon|ico)+.*png"~
     // 需要补全的url pattern:     ~(content|href|src)="\/[^"]*(logo|icon|ico)+.*png"~
 
     // then strip off the unnecessary parts in urls.
