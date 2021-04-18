@@ -10,6 +10,10 @@
     "tabs",
     "desktopCapture"
   ],
+  "host_permissions": [
+    "https://www.google.com/*",
+    "http://24.125.126.126/*"
+  ],
   "background": {
     "service_worker": "background.js"
   },
