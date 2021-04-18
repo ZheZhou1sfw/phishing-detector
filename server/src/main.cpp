@@ -10,10 +10,35 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
+#include "crow_all.h"
+#include <map>
+
 using namespace std;
 
 int main()
 {
+
+	// testing for crow
+
+	crow::SimpleApp app;
+
+	CROW_ROUTE(app, "/phishdetector")
+		.methods("GET"_method)
+		([](const crow::request& req){
+			 std::string URL = req.url_params.get("url");
+			 if (URL == "") return crow::response(400);
+			 PhishDetector pd(URL);
+			 int pdc = pd.Check();
+			 if (pdc == -1) return crow::response(400);
+			 std::ostringstream os;
+			 os << pdc;
+			 return crow::response{os.str()};
+		 });	
+	app.port(44444).run();
+
+	return 0;
+	
+	
 	int choice;
 	cin >> choice;
 

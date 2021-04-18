@@ -10,7 +10,7 @@ PhishDetector::PhishDetector(std::string url) : url(url)
 {
 }
 
-bool PhishDetector::Check()
+int PhishDetector::Check()
 {
 	PhishDatabase phish_db;
 	int pd_check = phish_db.Check(url);	
@@ -69,6 +69,7 @@ bool PhishDetector::Check()
 	else
 	{
 		std::cout << "Error: phishtank result's wrong" << std::endl;
+		return -1;
 	}
 	return 1;
 }

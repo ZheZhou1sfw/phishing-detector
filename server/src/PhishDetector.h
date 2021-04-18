@@ -10,5 +10,5 @@ private:
 	std::string url;
 public:
     PhishDetector(std::string url);
-	bool Check();
+	int Check();
 };
