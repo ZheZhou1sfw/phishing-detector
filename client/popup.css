@@ -1,0 +1,25 @@
+body {
+    font-family: "Gill Sans", sans-serif;
+    size: auto;   /* auto is the initial value */
+    margin: 10%;
+    background-image: url("background.png");
+    /* white-space: nowrap; */
+    word-break: initial;
+
+ }
+
+ #url {
+     font-size: large;
+     word-break: keep-all;
+     word-wrap: break-word;
+ }
+
+ #title {
+    margin: auto;
+    width: 80%;
+    padding: 5px;
+    white-space: nowrap;
+ }
+
+
+

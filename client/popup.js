@@ -9,7 +9,9 @@ chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
         // capture screenshot
         // default current window, default format jpeg
         
+        document.querySelector('button').className = 'btn btn-info col-12';
         document.querySelector('button').innerHTML = 'in progress...';
+
 
         console.log('start checking');
         
@@ -33,10 +35,13 @@ chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
                 // something went wrong
                 message = 'ops something went wrong';
             }
+            
             document.getElementById("result").innerHTML = 'Result: ' + message;
-            document.querySelector('button').innerHTML = 'done';
+            document.querySelector('button').innerHTML = 'check';
+            document.querySelector('button').className = 'btn btn-primary col-12';
         }).catch((e) => {
-            document.querySelector('button').innerHTML = 'done';
+            document.querySelector('button').innerHTML = 'check';
+            document.querySelector('button').className = 'btn btn-primary col-12';
             console.log("error: " + e);
             document.getElementById("result").innerHTML = 'Result: ' + 'no connection to server';
         })
