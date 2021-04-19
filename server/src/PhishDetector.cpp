@@ -4,10 +4,54 @@
 #include "SourceFinder.h"
 #include "WhoIS.h"
 #include <vector>
+#include <map>
 #include <iostream>
 
 PhishDetector::PhishDetector(std::string url) : url(url)
 {
+}
+
+#define RESERVED_SUF_SIZE 9
+std::string reserved_suf[RESERVED_SUF_SIZE] = {"com", "cn", "org", "pt", "sa", "co", "uk", "pe", "edu"};
+
+std::string url_root_finder(std::string url)
+{
+	std::string url_root = "";
+	int check = 0;
+	int i;
+	for (i = 0; i < url.length(); i++)
+	{
+		if (url[i] == '/') check++;
+		if (check == 3) break;
+	}
+	std::string temp = "";
+	check = 0;
+	for (i--; i >= 0; i--)
+	{
+		if (url[i] == '.' || url[i] == '/')
+		{
+			bool mark = 0;
+			for (int i = 0; i < RESERVED_SUF_SIZE; i++)
+				if (reserved_suf[i] == temp)
+				{					
+					mark = 1;
+					break;
+				}
+			if (mark)
+			{
+				url_root = "." + temp + url_root;
+				temp = "";
+				continue;
+			}
+			else
+			{
+				url_root = temp + url_root;
+				break;
+			}
+		}
+		temp = url[i] + temp;
+	}
+	return url_root;
 }
 
 int PhishDetector::Check()
@@ -34,27 +78,33 @@ int PhishDetector::Check()
 		for (int i = 0; i < source_v.size(); i++)
 			std::cout << source_v[i] << std::endl; // debug
 
-		return 3;
-		// exit(3);
-
-		WhoIS wi(url);
+		WhoIS wi(url_root_finder(url));
 
 		std::string input_owner = wi.Find();
 
-		std::cout << input_owner << std::endl; // debug
+		if (input_owner == "") return 2;
+
+		std::map<std::string, bool> mark;
 		
 		int eq_cnt = 0;
 		for (int i = 0; i < source_v.size(); i++)
 		{
-			wi.Set(source_v[i]);
-			eq_cnt += wi.Find() == input_owner ? 1 : 0;
+			std::string url_root = url_root_finder(source_v[i]);
+			if (mark[url_root] == 0)
+			{
+				mark[url_root] = 1;
+				wi.Set(url_root);
+				eq_cnt += wi.Find() == input_owner ? 1 : 0;
+			}
 		}
 
 		std::cout << "eq_cnt = " << eq_cnt << std::endl; // debug
 
-		// bigger eq_cnt, more chance that it's not a phishing website
+		if (eq_cnt) return 3;
 		
-		return 0;
+		return 2;
+
+		// bigger eq_cnt, more chance that it's not a phishing website
 	}
 	else if (pd_check == 1)
 	{

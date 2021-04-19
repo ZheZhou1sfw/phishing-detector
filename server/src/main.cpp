@@ -20,7 +20,7 @@ int main()
 
 	// testing for crow
 
-	/*
+	
 	crow::SimpleApp app;
 
 	CROW_ROUTE(app, "/phishdetector")
@@ -38,7 +38,6 @@ int main()
 	app.port(44444).run();
 
 	return 0;
-	*/
 	
 	
 	int choice;

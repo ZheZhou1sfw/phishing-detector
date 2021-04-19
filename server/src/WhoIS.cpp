@@ -25,8 +25,13 @@ std::string WhoIS::Find()
 		res = curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
 	}
+	if (readBuffer[0] != '{') return ""; // not a json reply
 	Json::Reader reader;
-    reader.parse(readBuffer, reply); 
-    std::cout << "DEBUG " << reply["whoisServerRecord"]["adminContact"]["organization"].asString() << std::endl;
-	return reply["whoisServerRecord"]["adminContact"]["organization"].asString();
+    if (reader.parse(readBuffer, reply))
+	{
+		std::cout << "DEBUG " << reply["whoisServerRecord"]["adminContact"]["organization"].asString() << std::endl;
+		return reply["whoisServerRecord"]["adminContact"]["organization"].asString();
+	}
+	else
+		return "";
 }

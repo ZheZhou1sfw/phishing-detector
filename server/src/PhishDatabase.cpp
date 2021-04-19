@@ -22,7 +22,7 @@ int PhishDatabase::Check(std::string url)
 {
 
 	// debug for PictureExtractor
-	return 2;
+	// return 2;
 	
 	// if url is in, return blablabla (positive/negative/possibility)
 
