@@ -2,60 +2,46 @@ chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
 {
     // step 1: get the url
     let url = tabs[0].url;
+    document.getElementById("url").innerHTML = url;
     // step 2: perform checks
 
-    // navigator.tcpPermission.requestPermission({remoteAddress:"24.125.126.126", remotePort:44444}).then(
-    //     () => {
-    //         // Permission was granted
-    //         // Create a new TCP client socket and connect to remote host
-    //         var mySocket = new TCPSocket("24.125.126.12", 44444);
-    //
-    //         // Send data to server
-    //         mySocket.writeable.write("google.com").then(
-    //             () => {
-    //
-    //                 // Data sent sucessfully, wait for response
-    //                 console.log("Data has been sent to server");
-    //                 mySocket.readable.getReader().read().then(
-    //                     ({ value, done }) => {
-    //                         if (!done) {
-    //                             // Response received, log it:
-    //                             console.log("Data received from server:" + value);
-    //                         }
-    //
-    //                         // Close the TCP connection
-    //                         mySocket.close();
-    //                     }
-    //                 );
-    //             },
-    //             e => console.error("Sending error: ", e)
-    //         );
-    //     }
-    // );
+    document.querySelector('button').addEventListener('click', function(e) {
+        // capture screenshot
+        // default current window, default format jpeg
+        
+        document.querySelector('button').innerHTML = 'in progress...';
 
-    // const net = require('net');
-    //
-    // const client = new net.Socket();
-    // client.connect({ port: 44444 }, "24.125.126.126", () => {
-    //     client.write(`google.com`);
-    // });
-    // client.on('data', (data) => {
-    //     console.log(`Server says: ${data.toString('utf-8')}`);
-    //     client.destroy();
-    // });
+        console.log('start checking');
+        
+        serverAddr = 'http://24.125.126.126:44444/';
+        param = 'phishdetector?url=';
+        urlToCheck = serverAddr + param + url;
 
-    // chrome.sockets.tcp.create({}, function() {
-    //     chrome.sockets.tcp.connect(200,
-    //         "24.125.126.126", 44444, (info) => {
-    //         console.log(info);
-    //         console.log('connected');
-    //         });
-    // });
-
-
-    // step 3: render result
-
-    document.getElementById("level").innerHTML = url;
+        fetch(urlToCheck).then(r => r.text()).then(result => {
+            // step 3: render result
+            
+            let message = '';
+            if (result == 0) {
+                message = 'marked phishing by verified source'
+            } else if (result == 1) {
+                message = 'marked safe by verified source'
+            } else if (result == 2) {
+                message = 'marked phishing by detector'
+            } else if (result == 3) {
+                message = 'marked safe by detector'
+            } else {
+                // something went wrong
+                message = 'ops something went wrong';
+            }
+            document.getElementById("result").innerHTML = 'Result: ' + message;
+            document.querySelector('button').innerHTML = 'done';
+        }).catch((e) => {
+            document.querySelector('button').innerHTML = 'done';
+            console.log("error: " + e);
+            document.getElementById("result").innerHTML = 'Result: ' + 'no connection to server';
+        })
+        
+    });
 });
 
 
