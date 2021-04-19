@@ -11,8 +11,8 @@ PhishDetector::PhishDetector(std::string url) : url(url)
 {
 }
 
-#define RESERVED_SUF_SIZE 9
-std::string reserved_suf[RESERVED_SUF_SIZE] = {"com", "cn", "org", "pt", "sa", "co", "uk", "pe", "edu"};
+#define RESERVED_SUF_SIZE 11
+std::string reserved_suf[RESERVED_SUF_SIZE] = {"com", "cn", "org", "pt", "sa", "co", "uk", "pe", "edu", "net", "gov"};
 
 std::string url_root_finder(std::string url)
 {
@@ -57,7 +57,7 @@ std::string url_root_finder(std::string url)
 int PhishDetector::Check()
 {
 	PhishDatabase phish_db;
-	int pd_check = phish_db.Check(url);	
+	int pd_check = phish_db.Check(url);
 	if (pd_check == 2)
 	{
 		// url is not in DB yet, need to self-check

@@ -28,6 +28,7 @@ int main()
 		([](const crow::request& req){
 			 std::string URL = req.url_params.get("url");
 			 if (URL == "") return crow::response(400);
+			 std::cout << "REQ for URL = " << URL << std::endl;
 			 PhishDetector pd(URL);
 			 int pdc = pd.Check();
 			 if (pdc == -1) return crow::response(400);

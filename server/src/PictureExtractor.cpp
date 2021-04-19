@@ -40,6 +40,8 @@ std::vector<std::string> PictureExtractor::Run()
 		curl_easy_cleanup(curl);
 	}
 
+	// std::cout << readBuffer << std::endl;
+
 	// TODO step2: run the regular expression with <regex> library
 	// example urls for testing:
 	/*
