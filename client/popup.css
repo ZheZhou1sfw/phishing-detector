@@ -1,24 +1,150 @@
-body {
-    font-family: "Gill Sans", sans-serif;
-    size: auto;   /* auto is the initial value */
-    margin: 10%;
-    background-image: url("background.png");
-    /* white-space: nowrap; */
-    word-break: initial;
-
+#title {
+	width: 260px;
+	height: 31px;
+	text-align: left;
+	font: normal normal bold 19px Poppins;
+	letter-spacing: 2.2px;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	opacity: 1;
+	z-index:2;
+	line-height: 33px;
+	margin:0px;
+	padding:10px;
+ }
+ 
+ #subtitle {
+	width: 200px;
+	height: 17px;
+	text-align: left;
+	font: normal normal normal 12px Poppins;
+	letter-spacing: 0.6px;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	opacity: 1;
+	line-height:18px;
+	margin:0px;
+	padding:10px;
+ }
+ 
+  #outsidebox{
+	top: 84px;
+	left: 1510px;
+	width: 369px;
+	height: 369px;
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+	box-shadow: 0px 0px 6px #00000029;
+	opacity: 1;
+	z-index: -1;
+	margin:0px;
+	padding:0px;
+ }
+ 
+ #toprectangle{
+	top: 84px;
+	left: 1510px;
+	width: 100%;
+	height: 77px;
+	background: #2A65AA 0% 0% no-repeat padding-box;
+	opacity: 1;
+	z-index: 1;
  }
 
- #url {
-     font-size: large;
-     word-break: keep-all;
-     word-wrap: break-word;
+ 
+.dot {
+	position:relative;
+	top: -40px;
+	left: 280px;
+	width: 52px;
+	height: 52px;
+	background-color: #FFFFFF;
+	border-radius: 50%;
+	display: inline-block;
+	z-index:3;
+	text-align:center;
+}
+ 
+ #fish{
+	position:relative;
+	top: -62px;
+	left: 236px;
+	width: 28px;
+	height: 31px;
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+	opacity: 1;
+	 z-index:4;
  }
+ 
+ #currenturl{
+	text-align: left;
+	font: normal normal bold 15px Poppins;
+	letter-spacing: 1.5px;
+	color: #2A65AA;
+	text-transform: uppercase;
+	opacity: 1;
+	z-index:2;
+	line-height: 33px;
+	margin:0px;
+	position:relative;
+	left:22px;
+ }
+ 
+ #url{ 
+	font: normal normal normal 12px Poppins;
+	letter-spacing: 0px;
+	color: #454545;
+	opacity: 1;
+	z-index:2;
+	line-height: 14px;
+	margin:0px;
+	padding:0px;
+	position:relative;
+	left:22px;
+	text-align:left;
+	width:90%;
+	word-wrap: break-word;
 
- #title {
-    margin: auto;
-    width: 50%;
-    padding: 5px;
  }
+ 
+ #result{
+	font: normal normal bold 15px Poppins;
+	letter-spacing: 1.5px;
+	color: #2A65AA;
+	opacity: 1;
+	z-index:2;
+	line-height: 33px;
+	margin:0px;
+	padding:0px;
+	position:relative;
+	left:22px;
+	text-align:left;
+	width:90%;
+	word-wrap: break-word;
+ }
+ 
+ .button {
+	width: 345px;
+	height: 51px;
+	background: #2A65AA 0% 0% no-repeat padding-box;
+	opacity: 1;
+	border: none;
+	text-align: center;
+	font: normal normal bold 22px/33px Poppins;
+	letter-spacing: 2.2px;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	margin: 12px;
+	position:absolute;
+	bottom:0px;
+
+}
+ 
+
+	 
+	 
+	 
+	 
+	 
 
 
 
