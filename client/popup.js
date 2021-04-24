@@ -2,19 +2,19 @@ chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
 {
 
     // for UI testing purpose
-    document.getElementById("recommend_list_title").innerHTML = 'You may want to visits the following urls:';
-    document.getElementById("recommend_list_item").innerHTML = 'https://www.google.com' + '<br>';
-    document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.facebook.com' + '<br>';
-    document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.twitter.com' + '<br>';
-    document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.google.com' + '<br>';
-    document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.facebook.com' + '<br>';
-    document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.twitter.com' + '<br>';
-    document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.google.com' + '<br>';
-    document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.facebook.com' + '<br>';
-    document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.twitter.com';
+    // document.getElementById("recommend_list_title").innerHTML = 'You may want to visit:';
+    // document.getElementById("recommend_list_item").innerHTML = 'https://www.google.com' + '<br>';
+    // document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.facebook.com' + '<br>';
+    // document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.twitter.com' + '<br>';
+    // document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.google.com' + '<br>';
+    // document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.facebook.com' + '<br>';
+    // document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.twitter.com' + '<br>';
+    // document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.google.com' + '<br>';
+    // document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.facebook.com' + '<br>';
+    // document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_item").innerHTML + 'https://www.twitter.com';
    
 
-
+   
 
     // step 1: get the url
     let url = tabs[0].url;
@@ -24,7 +24,7 @@ chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
     document.querySelector('button').addEventListener('click', function(e) {
         // capture screenshot
         // default current window, default format jpeg
-        
+        console.log('123');
         // document.querySelector('button').className = 'btn btn-info col-12';
         document.querySelector('button').innerHTML = 'in progress...';
 
@@ -39,24 +39,24 @@ chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
             const resultObj = JSON.parse(result);
             const status = parseInt(resultObj['status']);
             // step 3: render result
-            let dbMark = 'False';
-            let imageMark = 'Skipped';
+            let dbMark = '';
+            let imageMark = '';
             let message = 'Safe';
             if (status == 0) {
-                dbMark = 'True';
+                dbMark = '&#10060';
                 imageMark = 'Skipped';
                 message = 'Phishing'
             } else if (status == 1) {
-                dbMark = 'False';
+                dbMark = '&#9989';
                 imageMark = 'Skipped';
                 message = 'Safe';
             } else if (status == 2) {
                 dbMark = 'Unknown';
-                imageMark = 'True';
+                imageMark = '&#10060';
                 message = 'Phishing';
                 
                 // special case, add recommend list to html
-                document.getElementById("recommend_list_title").innerHTML = 'You may want to visits the following urls:';
+                document.getElementById("recommend_list_title").innerHTML = 'You may want to visit:';
                 for (let i = 0; i < resultObj['recommend_list'].length; i++) {
 
                     document.getElementById("recommend_list_item").innerHTML = document.getElementById("recommend_list_ite").innerHTML + resultObj['recommend_list'][i];
@@ -70,7 +70,7 @@ chrome.tabs.query({active: true, currentWindow:true}, function(tabs)
 
             } else if (status == 3) {
                 dbMark = 'Unknown';
-                imageMark = 'False';
+                imageMark = '&#10060';
                 message = 'Safe';
             } else {
                 dbMark = 'Unknown';
