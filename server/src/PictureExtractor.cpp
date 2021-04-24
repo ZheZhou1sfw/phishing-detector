@@ -79,8 +79,10 @@ std::vector<std::string> PictureExtractor::Run()
 	string::const_iterator iterEnd;
 	std::string temp;
 
+	std::cout << "PictureExtractor RE 1" << std::endl;
+
 	std::smatch result1;
-	std::regex pattern1("https://[^\"\'\(]*(logo|icon|ico)+.*?png");
+	std::regex pattern1("https://[^\"\'\(]*?(logo|icon|ico)+.*?png");
 	iterStart = readBuffer.begin();
 	iterEnd = readBuffer.end();	
 	while (regex_search(iterStart, iterEnd, result1, pattern1))
@@ -91,8 +93,10 @@ std::vector<std::string> PictureExtractor::Run()
 		iterStart = result1[0].second;
 	}
 
+	std::cout << "PictureExtractor RE 2" << std::endl;
+
 	std::smatch result2;
-	std::regex pattern2("http://[^\"\'\(]*(logo|icon|ico)+.*?png");
+	std::regex pattern2("http://[^\"\'\(]*?(logo|icon|ico)+.*?png");
 	iterStart = readBuffer.begin();
 	iterEnd = readBuffer.end();	
 	while (regex_search(iterStart, iterEnd, result2, pattern2))
@@ -103,8 +107,10 @@ std::vector<std::string> PictureExtractor::Run()
 		iterStart = result2[0].second;
 	}
 
+	std::cout << "PictureExtractor RE 3" << std::endl;
+
 	std::smatch result3;
-	std::regex pattern3("/[^\"\'\(]*(logo|icon|ico)+.*?png");
+	std::regex pattern3("/[^\"\'\(]*?(logo|icon|ico)+.*?png");
 	iterStart = readBuffer.begin();
 	iterEnd = readBuffer.end();	
 	while (regex_search(iterStart, iterEnd, result3, pattern3))
@@ -114,6 +120,18 @@ std::vector<std::string> PictureExtractor::Run()
 			res.push_back(url+temp);
 		iterStart = result3[0].second;
 	}
+
+	// std::smatch result4;
+	// std::regex pattern4("\"[^\"\'\(]*(logo|icon|ico)+.*?png");
+	// iterStart = readBuffer.begin();
+	// iterEnd = readBuffer.end();	
+	// while (regex_search(iterStart, iterEnd, result4, pattern4))
+	// {
+	// 	temp = result4[0];
+	// 	if (temp[1] != '/')
+	// 		res.push_back(url+temp);
+	// 	iterStart = result4[0].second;
+	// }	
    
 	for (int i = 0; i < res.size(); i++)
 		std::cout << i << ' ' << res[i] << std::endl;
