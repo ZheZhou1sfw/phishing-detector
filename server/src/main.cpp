@@ -9,8 +9,10 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include <vector>
 
 #include "crow_all.h"
+#include "Share.h"
 #include <map>
 
 using namespace std;
@@ -30,11 +32,18 @@ int main()
 			 if (URL == "") return crow::response(400);
 			 std::cout << "REQ for URL = " << URL << std::endl;
 			 PhishDetector pd(URL);
+			 std::cout << pd.recommend_list.size() << std::endl;
 			 int pdc = pd.Check();
+			 std::cout << pd.recommend_list.size() << std::endl;
 			 if (pdc == -1) return crow::response(400);
-			 std::ostringstream os;
-			 os << pdc;
-			 return crow::response{os.str()};
+			 crow::json::wvalue x;
+			 x["status"] = pdc;
+			 if (pdc == 2)
+				 x["recommend_list"] = pd.recommend_list;
+			 return crow::response{x};
+			 // std::ostringstream os;
+			 // os << pdc;
+			 // return crow::response{os.str()};
 		 });	
 	app.port(44444).run();
 
@@ -96,6 +105,8 @@ int main()
 				string URL = string(buf);
 				cout << "DEBUG = " << URL << endl;
 				PhishDetector pd(URL);
+				vector<string> recommend_list;
+				recommend_list.clear();
 				cout << pd.Check() << endl;
 				send(conn, "True", 4, 0);
 			}
@@ -109,6 +120,7 @@ int main()
 		string URL;
 		cin >> URL;
 		PhishDetector pd(URL);
+		vector<string> recommend_list;
 		cout << pd.Check() << endl;
 	}
 	return 0;

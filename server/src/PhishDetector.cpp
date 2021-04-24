@@ -3,16 +3,18 @@
 #include "PictureExtractor.h"
 #include "SourceFinder.h"
 #include "WhoIS.h"
+#include "Share.h"
 #include <vector>
 #include <map>
 #include <iostream>
 
 PhishDetector::PhishDetector(std::string url) : url(url)
 {
+	recommend_list.clear();
 }
 
-#define RESERVED_SUF_SIZE 11
-std::string reserved_suf[RESERVED_SUF_SIZE] = {"com", "cn", "org", "pt", "sa", "co", "uk", "pe", "edu", "net", "gov"};
+#define RESERVED_SUF_SIZE 12
+std::string reserved_suf[RESERVED_SUF_SIZE] = {"com", "cn", "org", "pt", "sa", "co", "uk", "pe", "edu", "net", "gov", "pl"};
 
 std::string url_root_finder(std::string url)
 {
@@ -82,7 +84,9 @@ int PhishDetector::Check()
 
 		std::string input_owner = wi.Find();
 
-		if (input_owner == "") return 2;
+		bool empty_mark = 0;
+		if (input_owner == "")
+			empty_mark = 1;
 
 		std::map<std::string, bool> mark;
 		
@@ -93,14 +97,21 @@ int PhishDetector::Check()
 			if (mark[url_root] == 0)
 			{
 				mark[url_root] = 1;
-				wi.Set(url_root);
-				eq_cnt += wi.Find() == input_owner ? 1 : 0;
+				if (!empty_mark)
+				{
+					wi.Set(url_root);
+					eq_cnt += wi.Find() == input_owner ? 1 : 0;
+				}
+				else
+				{
+					recommend_list.push_back(url_root);
+				}
 			}
 		}
 
 		std::cout << "eq_cnt = " << eq_cnt << std::endl; // debug
 
-		if (eq_cnt) return 3;
+		if (eq_cnt) return 3;	   
 		
 		return 2;
 
